@@ -5,4 +5,8 @@ import java.util.List;
 
 public interface ProductRepositoryCustom {
     List<Product> findProductsByName(String name);
+
+    List<Product> findProductsByPriceRange(java.math.BigDecimal minPrice, java.math.BigDecimal maxPrice);
+
+    List<Product> findProductsByDescriptionContains(String description);
 }

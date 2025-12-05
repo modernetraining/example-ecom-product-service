@@ -24,4 +24,22 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom {
                 .where(qProduct.name.containsIgnoreCase(name))
                 .list(qProduct);
     }
+
+    @Override
+    public List<Product> findProductsByPriceRange(java.math.BigDecimal minPrice, java.math.BigDecimal maxPrice) {
+        QProduct qProduct = QProduct.product;
+        JPAQuery query = new JPAQuery(entityManager);
+        return query.from(qProduct)
+                .where(qProduct.price.between(minPrice, maxPrice))
+                .list(qProduct);
+    }
+
+    @Override
+    public List<Product> findProductsByDescriptionContains(String description) {
+        QProduct qProduct = QProduct.product;
+        JPAQuery query = new JPAQuery(entityManager);
+        return query.from(qProduct)
+                .where(qProduct.description.containsIgnoreCase(description))
+                .list(qProduct);
+    }
 }
